@@ -15,6 +15,38 @@ export default {
     ].filter(item => item.label.toLowerCase().includes(query.toLowerCase()))
   },
 
+  command: ({ editor, range, props }: any) => {
+    // Increase range.to by one when the next node is of type "text"
+    // and starts with a space character
+    const nodeAfter = editor.view.state.selection.$to.nodeAfter
+    const overrideSpace = nodeAfter?.text?.startsWith(' ')
+
+    if (overrideSpace) {
+      range.to += 1
+    }
+
+    editor
+      .chain()
+      .focus()
+      .insertContentAt(range, [
+        {
+          type: 'contextItem',
+          attrs: {
+            id: props.id,
+            label: props.label,
+            type: 'file', // Default type for now
+          },
+        },
+        {
+          type: 'text',
+          text: ' ',
+        },
+      ])
+      .run()
+
+    window.getSelection()?.collapseToEnd()
+  },
+
   render: () => {
     let component: VueRenderer
     let popup: any

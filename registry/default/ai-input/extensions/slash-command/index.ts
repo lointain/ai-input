@@ -59,7 +59,7 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
 
           return {
             onStart: (props) => {
-              component = new VueRenderer(CommandList, {
+              component = new VueRenderer(this.options.component || CommandList, {
                 props,
                 editor: props.editor,
               })
@@ -97,7 +97,7 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
                 popup[0].hide()
                 return true
               }
-
+              // @ts-ignore
               return component.ref?.onKeyDown(props)
             },
 

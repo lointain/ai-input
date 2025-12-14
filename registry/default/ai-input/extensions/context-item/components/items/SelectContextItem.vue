@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ListIcon, CheckIcon } from 'lucide-vue-next'
 import { computed } from 'vue'
-import type { ContextItemProps } from '../types'
+import type { ContextItemProps } from '../../registry/types'
 import ContextItemWrapper from '../ContextItemWrapper.vue'
 import { Command, CommandInput, CommandList, CommandItem, CommandEmpty, CommandGroup } from '@/components/ui/command'
 import { cn } from '@/lib/utils'

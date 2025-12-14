@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CalendarIcon } from 'lucide-vue-next'
 import { computed } from 'vue'
-import type { ContextItemProps } from '../types'
+import type { ContextItemProps } from '../../registry/types'
 import ContextItemWrapper from '../ContextItemWrapper.vue'
 import { Calendar } from '@/components/ui/calendar'
 import { format } from 'date-fns'

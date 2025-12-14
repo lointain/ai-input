@@ -1,4 +1,4 @@
-import type { Component } from 'vue'
+import type { Component, AsyncComponentLoader } from 'vue'
 
 export interface ContextItemProps {
   // Tiptap node attributes
@@ -17,9 +17,18 @@ export interface ContextItemProps {
 
 export type ContextItemComponent = Component<ContextItemProps>
 
+export interface RegistryItem {
+  component: ContextItemComponent | AsyncComponentLoader
+  meta?: {
+    label?: string
+    icon?: Component
+  }
+}
+
 export interface ContextItemRegistry {
-  register: (type: string, component: ContextItemComponent) => void
-  get: (type: string) => ContextItemComponent | undefined
+  register: (type: string, item: ContextItemComponent | RegistryItem) => void
+  get: (type: string) => RegistryItem | undefined
+  getComponent: (type: string) => ContextItemComponent | AsyncComponentLoader | undefined
 }
 
 export const CONTEXT_ITEM_REGISTRY_KEY = Symbol('ContextItemRegistry')

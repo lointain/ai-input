@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
 import { FileIcon, XIcon, RefreshCwIcon, AlertCircleIcon } from 'lucide-vue-next'
-import { useAIInputContext } from './context'
+import { useAIInputContext } from '../core/context'
 import { computed } from 'vue'
 
 const props = defineProps<{

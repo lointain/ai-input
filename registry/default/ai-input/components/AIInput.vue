@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
 import { cn } from '@/lib/utils'
-import { useAIInputProvider, type AIInputProps } from './context'
+import { useAIInputProvider, type AIInputProps } from '../core/context'
 import AIInputAttachments from './AIInputAttachments.vue'
 
 interface Props extends AIInputProps {
@@ -39,6 +39,7 @@ function handleDrop(e: DragEvent) {
 
 <template>
   <div
+    data-ai-input
     :class="cn(
       'relative flex w-full flex-col overflow-hidden rounded-xl border bg-background focus-within:ring-1 focus-within:ring-ring',
       props.class,

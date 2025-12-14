@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
 import { PaperclipIcon } from 'lucide-vue-next'
-import { useAIInputContext } from './context'
+import { useAIInputContext } from '../core/context'
 
 const { fileInputRef } = useAIInputContext()
 

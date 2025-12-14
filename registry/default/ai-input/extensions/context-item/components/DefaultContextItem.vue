@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { FileIcon, HashIcon } from 'lucide-vue-next'
 import { computed } from 'vue'
-import type { ContextItemProps } from './types'
+import type { ContextItemProps } from '../registry/types'
 import ContextItemWrapper from './ContextItemWrapper.vue'
 
 const props = defineProps<ContextItemProps>()

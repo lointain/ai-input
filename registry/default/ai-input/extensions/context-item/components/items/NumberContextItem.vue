@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RulerIcon } from 'lucide-vue-next'
 import { computed, ref, watch } from 'vue'
-import type { ContextItemProps } from '../types'
+import type { ContextItemProps } from '../../registry/types'
 import ContextItemWrapper from '../ContextItemWrapper.vue'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'

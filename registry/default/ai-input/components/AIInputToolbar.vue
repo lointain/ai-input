@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
 import { ArrowUpIcon, SquareIcon } from 'lucide-vue-next'
-import { useAIInputContext } from './context'
+import { useAIInputContext } from '../core/context'
 import { cn } from '@/lib/utils'
 
 const { submit, isLoading, isEmpty } = useAIInputContext()

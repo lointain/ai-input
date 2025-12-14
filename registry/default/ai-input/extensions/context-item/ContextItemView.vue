@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
 import { computed, inject } from 'vue'
-import { CONTEXT_ITEM_REGISTRY_KEY } from '../registry/types'
+import { CONTEXT_ITEM_REGISTRY_KEY } from './registry/types'
 
 const props = defineProps(nodeViewProps)
 
-const registry = inject(CONTEXT_ITEM_REGISTRY_KEY)
+const registry = inject(CONTEXT_ITEM_REGISTRY_KEY) as any
 const type = computed(() => props.node.attrs.type)
 
 // Fallback safely if registry is missing (e.g. usage outside of AIInputProvider)
 const TargetComponent = computed(() => {
   if (!registry) return null
-  return registry.get(type.value)
+  return registry.getComponent(type.value)
 })
 </script>
 

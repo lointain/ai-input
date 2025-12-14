@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
 import { MicIcon } from 'lucide-vue-next'
-import { useVoice } from './useVoice'
-import { useAIInputContext } from './context'
+import { useVoice } from '../hooks/use-voice'
+import { useAIInputContext } from '../core/context'
 import { cn } from '@/lib/utils'
 
 const { editor } = useAIInputContext()

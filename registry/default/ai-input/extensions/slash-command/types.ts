@@ -18,4 +18,5 @@ export interface PromptShortcut {
 export interface SlashCommandOptions {
   char: string
   shortcuts: PromptShortcut[]
+  component?: Component
 }
