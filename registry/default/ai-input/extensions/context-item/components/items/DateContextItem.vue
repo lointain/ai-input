@@ -23,8 +23,8 @@ const handleSelect = (date: Date | undefined) => {
   props.updateAttributes({
     metadata: {
       ...props.metadata,
-      date: date.toISOString()
-    }
+      date: date.toISOString(),
+    },
   })
 }
 </script>
@@ -43,8 +43,8 @@ const handleSelect = (date: Date | undefined) => {
       <Calendar
         mode="single"
         :model-value="currentDate"
-        @update:model-value="handleSelect"
         class="rounded-md border"
+        @update:model-value="handleSelect"
       />
     </div>
   </ContextItemWrapper>

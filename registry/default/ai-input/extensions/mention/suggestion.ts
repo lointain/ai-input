@@ -12,7 +12,7 @@ export default {
       { id: '4', label: 'api.ts' },
       { id: '5', label: 'router.ts' },
       { id: '6', label: 'AIInput.vue' },
-    ].filter(item => item.label.toLowerCase().includes(query.toLowerCase()))
+    ].filter((item) => item.label.toLowerCase().includes(query.toLowerCase()))
   },
 
   command: ({ editor, range, props }: any) => {

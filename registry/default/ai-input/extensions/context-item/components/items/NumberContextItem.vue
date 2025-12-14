@@ -19,9 +19,13 @@ const step = computed(() => props.metadata?.step ?? 1)
 const currentValue = ref(props.metadata?.value ?? 0)
 
 // Sync from props
-watch(() => props.metadata?.value, (val) => {
-  if (val !== undefined) currentValue.value = val
-}, { immediate: true })
+watch(
+  () => props.metadata?.value,
+  (val) => {
+    if (val !== undefined) currentValue.value = val
+  },
+  { immediate: true },
+)
 
 // Sync to props
 const updateValue = (val: number) => {
@@ -29,8 +33,8 @@ const updateValue = (val: number) => {
   props.updateAttributes({
     metadata: {
       ...props.metadata,
-      value: val
-    }
+      value: val,
+    },
   })
 }
 
@@ -53,18 +57,18 @@ const displayLabel = computed(() => {
       <div class="space-y-1">
         <Label class="text-xs">{{ label }} ({{ unit }})</Label>
         <div class="flex items-center gap-2">
-          <Input 
-            type="number" 
+          <Input
+            type="number"
             :model-value="currentValue"
-            @update:model-value="(v) => updateValue(Number(v))"
             :min="min"
             :max="max"
             :step="step"
             class="h-8"
+            @update:model-value="(v) => updateValue(Number(v))"
           />
         </div>
       </div>
-      
+
       <Slider
         :model-value="[currentValue]"
         :min="min"

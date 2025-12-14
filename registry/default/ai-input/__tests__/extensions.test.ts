@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { SlashCommand } from '../extensions/slash-command'
 import { defaultShortcuts } from '../extensions/slash-command/shortcuts'
 import { FileHandler } from '../extensions/file-handler'
@@ -15,11 +15,12 @@ describe('SlashCommand', () => {
   it('should filter shortcuts correctly', () => {
     // Simulate the filtering logic used in the suggestion items
     const query = 'bug'
-    const filtered = defaultShortcuts.filter(item => 
-      item.label.toLowerCase().includes(query.toLowerCase()) || 
-      item.key.toLowerCase().includes(query.toLowerCase())
+    const filtered = defaultShortcuts.filter(
+      (item) =>
+        item.label.toLowerCase().includes(query.toLowerCase()) ||
+        item.key.toLowerCase().includes(query.toLowerCase()),
     )
-    
+
     expect(filtered.length).toBeGreaterThan(0)
     expect(filtered[0].label.toLowerCase()).toContain('bug')
   })
@@ -28,9 +29,9 @@ describe('SlashCommand', () => {
 describe('FileHandler', () => {
   it('should be configurable', () => {
     const configured = FileHandler.configure({
-      onDrop: (files) => console.log(files)
+      onDrop: (files) => console.log(files),
     })
-    
+
     expect(configured.name).toBe('fileHandler')
   })
 })

@@ -27,13 +27,13 @@ const hasFiles = computed(() => files.value.length > 0)
       <div class="relative flex h-8 w-8 items-center justify-center rounded bg-muted">
         <AlertCircleIcon v-if="file.status === 'error'" class="h-4 w-4 text-destructive" />
         <FileIcon v-else class="h-4 w-4 text-muted-foreground" />
-        
+
         <!-- Progress Overlay -->
-        <div 
+        <div
           v-if="file.status === 'uploading'"
           class="absolute inset-0 bg-background/50 flex items-center justify-center"
         >
-          <div 
+          <div
             class="h-full w-full bg-primary/20 absolute bottom-0 left-0"
             :style="{ height: `${file.progress}%` }"
           />
@@ -43,14 +43,10 @@ const hasFiles = computed(() => files.value.length > 0)
       <div class="flex flex-col max-w-[150px]">
         <span class="truncate font-medium text-xs">{{ file.name }}</span>
         <span class="text-[10px] text-muted-foreground flex items-center gap-1">
-          <template v-if="file.status === 'uploading'">
-            Uploading {{ file.progress }}%
-          </template>
-          <template v-else-if="file.status === 'error'">
-            Failed
-          </template>
+          <template v-if="file.status === 'uploading'"> Uploading {{ file.progress }}% </template>
+          <template v-else-if="file.status === 'error'"> Failed </template>
           <template v-else>
-            {{ (file.file?.size ? (file.file.size / 1024).toFixed(1) + ' KB' : '') }}
+            {{ file.file?.size ? (file.file.size / 1024).toFixed(1) + ' KB' : '' }}
           </template>
         </span>
       </div>
@@ -65,7 +61,7 @@ const hasFiles = computed(() => files.value.length > 0)
         >
           <RefreshCwIcon class="h-3 w-3" />
         </button>
-        
+
         <button
           type="button"
           class="rounded-full p-1 hover:bg-muted text-muted-foreground hover:text-foreground"
@@ -76,7 +72,7 @@ const hasFiles = computed(() => files.value.length > 0)
       </div>
 
       <!-- Progress Bar (Bottom Line) -->
-      <div 
+      <div
         v-if="file.status === 'uploading'"
         class="absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300"
         :style="{ width: `${file.progress}%` }"

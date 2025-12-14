@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 import { cn } from '@/lib/utils'
 import type { PromptShortcut } from './types'
 
@@ -10,13 +10,16 @@ const props = defineProps<{
 
 const selectedIndex = ref(0)
 
-watch(() => props.items, () => {
-  selectedIndex.value = 0
-})
+watch(
+  () => props.items,
+  () => {
+    selectedIndex.value = 0
+  },
+)
 
 const onKeyDown = ({ event }: { event: KeyboardEvent }) => {
   if (event.key === 'ArrowUp') {
-    selectedIndex.value = ((selectedIndex.value + props.items.length) - 1) % props.items.length
+    selectedIndex.value = (selectedIndex.value + props.items.length - 1) % props.items.length
     return true
   }
 
@@ -29,7 +32,7 @@ const onKeyDown = ({ event }: { event: KeyboardEvent }) => {
     selectItem(selectedIndex.value)
     return true
   }
-  
+
   if (event.key === 'Tab') {
     event.preventDefault()
     event.stopPropagation()
@@ -53,18 +56,22 @@ defineExpose({
 </script>
 
 <template>
-  <div class="z-50 min-w-[300px] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95">
+  <div
+    class="z-50 min-w-[300px] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95"
+  >
     <div v-if="items.length === 0" class="p-2 text-sm text-muted-foreground text-center">
       No commands found
     </div>
-    
+
     <div
       v-for="(item, index) in items"
       :key="index"
-      :class="cn(
-        'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none',
-        index === selectedIndex ? 'bg-accent text-accent-foreground' : ''
-      )"
+      :class="
+        cn(
+          'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none',
+          index === selectedIndex ? 'bg-accent text-accent-foreground' : '',
+        )
+      "
       @click="selectItem(index)"
       @mouseenter="selectedIndex = index"
     >
@@ -75,7 +82,10 @@ defineExpose({
           {{ item.description }}
         </span>
       </div>
-      <kbd v-if="index === selectedIndex" class="ml-auto text-[10px] text-muted-foreground font-mono bg-muted px-1 rounded">
+      <kbd
+        v-if="index === selectedIndex"
+        class="ml-auto text-[10px] text-muted-foreground font-mono bg-muted px-1 rounded"
+      >
         ↵
       </kbd>
     </div>

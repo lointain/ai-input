@@ -9,7 +9,11 @@ const { editor } = useAIInputContext()
 
 const { state, toggle, isSupported } = useVoice((text) => {
   if (editor.value) {
-    editor.value.chain().focus().insertContent(text + ' ').run()
+    editor.value
+      .chain()
+      .focus()
+      .insertContent(text + ' ')
+      .run()
   }
 })
 </script>
@@ -19,7 +23,13 @@ const { state, toggle, isSupported } = useVoice((text) => {
     v-if="isSupported"
     size="icon"
     variant="ghost"
-    :class="cn('h-8 w-8 rounded-full transition-all', state === 'listening' && 'bg-red-100 text-red-600 hover:bg-red-100 hover:text-red-700 dark:bg-red-900/30 dark:text-red-400')"
+    :class="
+      cn(
+        'h-8 w-8 rounded-full transition-all',
+        state === 'listening' &&
+          'bg-red-100 text-red-600 hover:bg-red-100 hover:text-red-700 dark:bg-red-900/30 dark:text-red-400',
+      )
+    "
     @click="toggle"
   >
     <MicIcon v-if="state !== 'listening'" class="h-4 w-4" />

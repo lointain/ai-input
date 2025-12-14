@@ -1,4 +1,12 @@
 <script setup lang="ts">
+/**
+ * AIInputEditor.vue
+ * 
+ * Wrapper around Tiptap EditorContent.
+ * Handles the editor instance injection and editable state synchronization.
+ * 
+ * @component
+ */
 import { EditorContent } from '@tiptap/vue-3'
 import { watch } from 'vue'
 import { useAIInputContext } from '../core/context'

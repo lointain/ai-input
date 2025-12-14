@@ -11,12 +11,7 @@ const onClick = () => {
 </script>
 
 <template>
-  <Button
-    variant="ghost"
-    size="icon"
-    class="h-8 w-8 rounded-full"
-    @click="onClick"
-  >
+  <Button variant="ghost" size="icon" class="h-8 w-8 rounded-full" @click="onClick">
     <PaperclipIcon class="h-4 w-4" />
   </Button>
 </template>

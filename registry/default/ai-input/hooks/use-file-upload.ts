@@ -11,8 +11,8 @@ export interface UseFileUploadOptions {
 
 export function useFileUpload(options: UseFileUploadOptions = {}) {
   const files = ref<AttachmentFile[]>([])
-  
-  const isUploading = computed(() => files.value.some(f => f.status === 'uploading'))
+
+  const isUploading = computed(() => files.value.some((f) => f.status === 'uploading'))
 
   const processFile = async (attachment: AttachmentFile) => {
     if (!options.handler || !attachment.file) {
@@ -42,33 +42,33 @@ export function useFileUpload(options: UseFileUploadOptions = {}) {
 
   const addFiles = async (newFiles: File[] | FileList) => {
     const fileArray = Array.from(newFiles)
-    
+
     // TODO: Add validation logic here (maxSize, accept, maxFiles)
-    
-    const newAttachments: AttachmentFile[] = fileArray.map(file => ({
+
+    const newAttachments: AttachmentFile[] = fileArray.map((file) => ({
       id: nanoid(),
       file,
       name: file.name,
       type: file.type,
       status: 'pending',
-      progress: 0
+      progress: 0,
     }))
-    
+
     files.value = [...files.value, ...newAttachments]
-    
+
     // Start uploads
     await Promise.all(newAttachments.map(processFile))
   }
 
   const retryUpload = (id: string) => {
-    const file = files.value.find(f => f.id === id)
+    const file = files.value.find((f) => f.id === id)
     if (file) {
       processFile(file)
     }
   }
 
   const removeFile = (id: string) => {
-    files.value = files.value.filter(f => f.id !== id)
+    files.value = files.value.filter((f) => f.id !== id)
   }
 
   const clearFiles = () => {
@@ -81,6 +81,6 @@ export function useFileUpload(options: UseFileUploadOptions = {}) {
     addFiles,
     retryUpload,
     removeFile,
-    clearFiles
+    clearFiles,
   }
 }

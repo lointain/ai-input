@@ -1,11 +1,10 @@
 import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import AIInput from '../components/AIInput.vue'
-import { AI_INPUT_KEY } from '../core/types'
 
 // Mock dependencies
 vi.mock('@/lib/utils', () => ({
-  cn: (...args: any[]) => args.join(' ')
+  cn: (...args: any[]) => args.join(' '),
 }))
 
 describe('AIInput', () => {
@@ -25,33 +24,33 @@ describe('AIInput', () => {
   it('should handle file selection via input', async () => {
     const wrapper = mount(AIInput)
     const input = wrapper.find('input[type="file"]')
-    
+
     // Create a mock file
     const file = new File(['content'], 'test.txt', { type: 'text/plain' })
-    
+
     // Simulate file selection
     Object.defineProperty(input.element, 'files', {
-      value: [file]
+      value: [file],
     })
-    
+
     await input.trigger('change')
   })
 
   it('should handle file drop', async () => {
     const wrapper = mount(AIInput)
     const div = wrapper.find('div[data-ai-input]')
-    
+
     const file = new File(['content'], 'test.txt', { type: 'text/plain' })
     const mockDataTransfer = {
       types: ['Files'],
       files: [file],
-      preventDefault: vi.fn()
+      preventDefault: vi.fn(),
     }
-    
+
     await div.trigger('drop', {
-      dataTransfer: mockDataTransfer
+      dataTransfer: mockDataTransfer,
     })
-    
+
     // Again, we can't easily assert the internal state without mocking useAIInputProvider.
     // But we ensure no error is thrown and the event handler is attached.
     expect(wrapper.exists()).toBe(true)

@@ -13,11 +13,11 @@ const { submit, isLoading, isEmpty } = useAIInputContext()
       <!-- Left slots (attachments, voice, etc.) -->
       <slot name="left" />
     </div>
-    
+
     <div class="flex items-center gap-2">
       <!-- Right slots -->
       <slot name="right" />
-      
+
       <Button
         size="icon"
         :variant="isLoading ? 'outline' : 'default'"

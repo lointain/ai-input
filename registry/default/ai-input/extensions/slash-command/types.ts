@@ -9,8 +9,8 @@ export interface PromptShortcut {
   // Description in menu
   description?: string
   // Icon component
-  icon?: Component 
-  
+  icon?: Component
+
   // The content to insert
   template: JSONContent | ((args?: any) => JSONContent)
 }

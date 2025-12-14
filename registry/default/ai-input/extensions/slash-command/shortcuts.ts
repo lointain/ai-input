@@ -12,34 +12,34 @@ export const defaultShortcuts: PromptShortcut[] = [
       content: [
         { type: 'text', text: 'Please analyze the following code for bugs: ' },
         { type: 'hardBreak' },
-        { 
-          type: 'contextItem', 
-          attrs: { 
-            type: 'input', 
+        {
+          type: 'contextItem',
+          attrs: {
+            type: 'input',
             label: 'Paste Code Here',
-            metadata: { placeholder: 'Code snippet...' } 
-          } 
+            metadata: { placeholder: 'Code snippet...' },
+          },
         },
         { type: 'hardBreak' },
         { type: 'text', text: 'Focus on: ' },
-        { 
-          type: 'contextItem', 
-          attrs: { 
-            type: 'select', 
+        {
+          type: 'contextItem',
+          attrs: {
+            type: 'select',
             label: 'Focus Area',
-            metadata: { 
+            metadata: {
               value: 'security',
               options: [
                 { label: 'Security', value: 'security' },
                 { label: 'Performance', value: 'performance' },
-                { label: 'Logic', value: 'logic' }
-              ]
-            } 
-          } 
+                { label: 'Logic', value: 'logic' },
+              ],
+            },
+          },
         },
-        { type: 'text', text: ' ' }
-      ]
-    }
+        { type: 'text', text: ' ' },
+      ],
+    },
   },
   {
     key: 'sql',
@@ -50,34 +50,34 @@ export const defaultShortcuts: PromptShortcut[] = [
       type: 'doc',
       content: [
         { type: 'text', text: 'Generate a SQL query for ' },
-        { 
-          type: 'contextItem', 
-          attrs: { 
-            type: 'select', 
+        {
+          type: 'contextItem',
+          attrs: {
+            type: 'select',
             label: 'Database',
-            metadata: { 
+            metadata: {
               value: 'postgresql',
               options: [
                 { label: 'PostgreSQL', value: 'postgresql' },
                 { label: 'MySQL', value: 'mysql' },
-                { label: 'Oracle', value: 'oracle' }
-              ]
-            } 
-          } 
+                { label: 'Oracle', value: 'oracle' },
+              ],
+            },
+          },
         },
         { type: 'text', text: ' to: ' },
         { type: 'hardBreak' },
-        { 
-          type: 'contextItem', 
-          attrs: { 
-            type: 'input', 
+        {
+          type: 'contextItem',
+          attrs: {
+            type: 'input',
             label: 'Requirement',
-            metadata: { placeholder: 'Describe what you need...' } 
-          } 
+            metadata: { placeholder: 'Describe what you need...' },
+          },
         },
-        { type: 'text', text: ' ' }
-      ]
-    }
+        { type: 'text', text: ' ' },
+      ],
+    },
   },
   {
     key: 'refactor',
@@ -88,34 +88,34 @@ export const defaultShortcuts: PromptShortcut[] = [
       type: 'doc',
       content: [
         { type: 'text', text: 'Refactor this code to be more ' },
-        { 
-          type: 'contextItem', 
-          attrs: { 
-            type: 'select', 
+        {
+          type: 'contextItem',
+          attrs: {
+            type: 'select',
             label: 'Goal',
-            metadata: { 
+            metadata: {
               value: 'readable',
               options: [
                 { label: 'Readable', value: 'readable' },
                 { label: 'Efficient', value: 'efficient' },
-                { label: 'Modern', value: 'modern' }
-              ]
-            } 
-          } 
+                { label: 'Modern', value: 'modern' },
+              ],
+            },
+          },
         },
         { type: 'text', text: ':' },
         { type: 'hardBreak' },
-        { 
-          type: 'contextItem', 
-          attrs: { 
-            type: 'input', 
+        {
+          type: 'contextItem',
+          attrs: {
+            type: 'input',
             label: 'Code',
-            metadata: { placeholder: 'Code...' } 
-          } 
+            metadata: { placeholder: 'Code...' },
+          },
         },
-        { type: 'text', text: ' ' }
-      ]
-    }
+        { type: 'text', text: ' ' },
+      ],
+    },
   },
   {
     key: 'explain',
@@ -126,33 +126,33 @@ export const defaultShortcuts: PromptShortcut[] = [
       type: 'doc',
       content: [
         { type: 'text', text: 'Explain what this code does in ' },
-        { 
-          type: 'contextItem', 
-          attrs: { 
-            type: 'select', 
+        {
+          type: 'contextItem',
+          attrs: {
+            type: 'select',
             label: 'Language',
-            metadata: { 
+            metadata: {
               value: 'english',
               options: [
                 { label: 'English', value: 'english' },
                 { label: 'Chinese', value: 'chinese' },
-                { label: 'Japanese', value: 'japanese' }
-              ]
-            } 
-          } 
+                { label: 'Japanese', value: 'japanese' },
+              ],
+            },
+          },
         },
         { type: 'text', text: ':' },
         { type: 'hardBreak' },
-        { 
-          type: 'contextItem', 
-          attrs: { 
-            type: 'input', 
+        {
+          type: 'contextItem',
+          attrs: {
+            type: 'input',
             label: 'Code',
-            metadata: { placeholder: 'Paste code...' } 
-          } 
+            metadata: { placeholder: 'Paste code...' },
+          },
         },
-        { type: 'text', text: ' ' }
-      ]
-    }
-  }
+        { type: 'text', text: ' ' },
+      ],
+    },
+  },
 ]

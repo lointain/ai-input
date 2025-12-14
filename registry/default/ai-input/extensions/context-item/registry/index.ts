@@ -7,10 +7,10 @@ import DateContextItem from '../components/items/DateContextItem.vue'
 
 export function createContextItemRegistry(): ContextItemRegistry {
   const items = reactive<Record<string, RegistryItem>>({
-    'default': { component: DefaultContextItem },
-    'number': { component: NumberContextItem },
-    'select': { component: SelectContextItem },
-    'date': { component: DateContextItem }
+    default: { component: DefaultContextItem },
+    number: { component: NumberContextItem },
+    select: { component: SelectContextItem },
+    date: { component: DateContextItem },
   })
 
   const register = (type: string, item: ContextItemComponent | RegistryItem) => {
@@ -24,22 +24,22 @@ export function createContextItemRegistry(): ContextItemRegistry {
   const get = (type: string) => {
     return items[type] || items['default']
   }
-  
+
   const getComponent = (type: string) => {
     const item = get(type)
     if (!item) return undefined
-    
+
     // Check if it's an async component loader (function)
     if (typeof item.component === 'function' && !('render' in item.component)) {
-       return defineAsyncComponent(item.component as any)
+      return defineAsyncComponent(item.component as any)
     }
-    
+
     return item.component
   }
 
   return {
     register,
     get,
-    getComponent
+    getComponent,
   }
 }

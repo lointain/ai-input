@@ -17,9 +17,12 @@ const props = defineProps<Props>()
 
 const selectedIndex = ref(0)
 
-watch(() => props.items, () => {
-  selectedIndex.value = 0
-})
+watch(
+  () => props.items,
+  () => {
+    selectedIndex.value = 0
+  },
+)
 
 const selectItem = (index: number) => {
   const item = props.items[index]
@@ -53,21 +56,23 @@ defineExpose({
 </script>
 
 <template>
-  <div class="z-50 min-w-[12rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95">
+  <div
+    class="z-50 min-w-[12rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95"
+  >
     <div
       v-for="(item, index) in items"
       :key="index"
-      :class="cn(
-        'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
-        index === selectedIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50'
-      )"
+      :class="
+        cn(
+          'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
+          index === selectedIndex ? 'bg-accent text-accent-foreground' : 'hover:bg-accent/50',
+        )
+      "
       @click="selectItem(index)"
     >
       <FileIcon class="mr-2 h-4 w-4 text-muted-foreground" />
       <span>{{ item.label }}</span>
     </div>
-    <div v-if="items.length === 0" class="p-2 text-sm text-muted-foreground">
-      No results
-    </div>
+    <div v-if="items.length === 0" class="p-2 text-sm text-muted-foreground">No results</div>
   </div>
 </template>

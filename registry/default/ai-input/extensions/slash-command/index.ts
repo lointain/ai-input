@@ -23,32 +23,30 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
         editor: this.editor,
         char: this.options.char,
         pluginKey: new PluginKey('slashCommand'), // Explicit key to separate from Mentions
-        
+
         items: ({ query }) => {
           return this.options.shortcuts
-            .filter(item => 
-              item.label.toLowerCase().includes(query.toLowerCase()) || 
-              item.key.toLowerCase().includes(query.toLowerCase())
+            .filter(
+              (item) =>
+                item.label.toLowerCase().includes(query.toLowerCase()) ||
+                item.key.toLowerCase().includes(query.toLowerCase()),
             )
             .slice(0, 10)
         },
 
         command: ({ editor, range, props }) => {
           const item = props as PromptShortcut
-          
+
           // Delete the slash command text
           editor.chain().focus().deleteRange(range).run()
-          
+
           // Insert the template content
           // If template is a function, call it (future proofing for dynamic templates)
-          const content = typeof item.template === 'function' 
-            ? item.template() 
-            : item.template
-            
+          const content = typeof item.template === 'function' ? item.template() : item.template
+
           // We need to unwrap the 'doc' if it exists, as insertContent expects nodes/array
-          const nodesToInsert = content.type === 'doc' && content.content 
-            ? content.content 
-            : content
+          const nodesToInsert =
+            content.type === 'doc' && content.content ? content.content : content
 
           editor.chain().insertContent(nodesToInsert).run()
         },

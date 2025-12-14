@@ -3,7 +3,14 @@ import { ListIcon, CheckIcon } from 'lucide-vue-next'
 import { computed } from 'vue'
 import type { ContextItemProps } from '../../registry/types'
 import ContextItemWrapper from '../ContextItemWrapper.vue'
-import { Command, CommandInput, CommandList, CommandItem, CommandEmpty, CommandGroup } from '@/components/ui/command'
+import {
+  Command,
+  CommandInput,
+  CommandList,
+  CommandItem,
+  CommandEmpty,
+  CommandGroup,
+} from '@/components/ui/command'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<ContextItemProps>()
@@ -12,8 +19,8 @@ const props = defineProps<ContextItemProps>()
 const options = computed(() => props.metadata?.options || [])
 const currentValue = computed(() => props.metadata?.value)
 
-const selectedOption = computed(() => 
-  options.value.find((opt: any) => opt.value === currentValue.value)
+const selectedOption = computed(() =>
+  options.value.find((opt: any) => opt.value === currentValue.value),
 )
 
 const displayLabel = computed(() => {
@@ -24,8 +31,8 @@ const handleSelect = (val: string) => {
   props.updateAttributes({
     metadata: {
       ...props.metadata,
-      value: val
-    }
+      value: val,
+    },
   })
 }
 </script>
@@ -52,10 +59,9 @@ const handleSelect = (val: string) => {
             @select="handleSelect(option.value)"
           >
             <CheckIcon
-              :class="cn(
-                'mr-2 h-4 w-4',
-                currentValue === option.value ? 'opacity-100' : 'opacity-0'
-              )"
+              :class="
+                cn('mr-2 h-4 w-4', currentValue === option.value ? 'opacity-100' : 'opacity-0')
+              "
             />
             {{ option.label }}
           </CommandItem>

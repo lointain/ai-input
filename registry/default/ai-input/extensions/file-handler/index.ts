@@ -38,7 +38,7 @@ export const FileHandler = Extension.create<FileHandlerOptions>({
                 const parsed = JSON.parse(refData)
                 const coords = { left: event.clientX, top: event.clientY }
                 const pos = view.posAtCoords(coords)?.pos || view.state.selection.from
-                
+
                 if (this.options.onReferenceDrop) {
                   this.options.onReferenceDrop(parsed, pos)
                 }
@@ -55,7 +55,7 @@ export const FileHandler = Extension.create<FileHandlerOptions>({
               const files = Array.from(dataTransfer.files)
               const coords = { left: event.clientX, top: event.clientY }
               const pos = view.posAtCoords(coords)?.pos || view.state.selection.from
-              
+
               if (this.options.onDrop) {
                 this.options.onDrop(files, pos)
               }
@@ -65,26 +65,26 @@ export const FileHandler = Extension.create<FileHandlerOptions>({
             return false
           },
           handlePaste: (view, event) => {
-             const items = event.clipboardData?.items
-             if (!items) return false
-             
-             const files: File[] = []
-             for (const item of Array.from(items)) {
-               if (item.kind === 'file') {
-                 const file = item.getAsFile()
-                 if (file) files.push(file)
-               }
-             }
-             
-             if (files.length > 0) {
-                event.preventDefault()
-                if (this.options.onPaste) {
-                    this.options.onPaste(files)
-                }
-                return true
-             }
-             return false
-          }
+            const items = event.clipboardData?.items
+            if (!items) return false
+
+            const files: File[] = []
+            for (const item of Array.from(items)) {
+              if (item.kind === 'file') {
+                const file = item.getAsFile()
+                if (file) files.push(file)
+              }
+            }
+
+            if (files.length > 0) {
+              event.preventDefault()
+              if (this.options.onPaste) {
+                this.options.onPaste(files)
+              }
+              return true
+            }
+            return false
+          },
         },
       }),
     ]

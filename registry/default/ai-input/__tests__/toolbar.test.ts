@@ -6,15 +6,15 @@ import { ref } from 'vue'
 
 // Mock dependencies
 vi.mock('@/lib/utils', () => ({
-  cn: (...args: any[]) => args.join(' ')
+  cn: (...args: any[]) => args.join(' '),
 }))
 
 vi.mock('@/components/ui/button', () => ({
   Button: {
     name: 'Button',
     template: '<button :disabled="disabled" @click="$emit(\'click\')"><slot /></button>',
-    props: ['disabled', 'variant', 'size']
-  }
+    props: ['disabled', 'variant', 'size'],
+  },
 }))
 
 vi.mock('lucide-vue-next', () => ({
@@ -25,11 +25,11 @@ vi.mock('lucide-vue-next', () => ({
   TextIcon: { template: '<svg />' },
   SmileIcon: { template: '<svg />' },
   CalendarIcon: { template: '<svg />' },
-   HashIcon: { template: '<svg />' },
-   DatabaseIcon: { template: '<svg />' },
-   TestTubeIcon: { template: '<svg />' },
-   PaletteIcon: { template: '<svg />' },
-   SparklesIcon: { template: '<svg />' }
+  HashIcon: { template: '<svg />' },
+  DatabaseIcon: { template: '<svg />' },
+  TestTubeIcon: { template: '<svg />' },
+  PaletteIcon: { template: '<svg />' },
+  SparklesIcon: { template: '<svg />' },
 }))
 
 describe('AIInputToolbar', () => {
@@ -41,10 +41,10 @@ describe('AIInputToolbar', () => {
             submit: vi.fn(),
             isLoading: ref(false),
             isEmpty: ref(false),
-            ...contextOverrides
-          }
-        }
-      }
+            ...contextOverrides,
+          },
+        },
+      },
     })
   }
 
@@ -62,7 +62,7 @@ describe('AIInputToolbar', () => {
     // Let's try finding by the button tag which our mock renders.
     expect(wrapper.find('button').attributes('disabled')).toBeDefined()
     // Or if we want to check the prop passed to the mock:
-    // We need to ensure the mock is registered/found correctly. 
+    // We need to ensure the mock is registered/found correctly.
     // Since we imported Button from '@/components/ui/button', let's check how we mocked it.
   })
 
@@ -75,7 +75,7 @@ describe('AIInputToolbar', () => {
   it('should call submit on click', async () => {
     const submit = vi.fn()
     const wrapper = createWrapper({ submit })
-    
+
     await wrapper.find('button').trigger('click')
     expect(submit).toHaveBeenCalled()
   })

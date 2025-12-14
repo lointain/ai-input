@@ -17,9 +17,9 @@ const TargetComponent = computed(() => {
 
 <template>
   <NodeViewWrapper as="span" class="inline-block align-middle mx-1 select-none">
-    <component 
-      v-if="TargetComponent"
+    <component
       :is="TargetComponent"
+      v-if="TargetComponent"
       :id="node.attrs.id"
       :type="type"
       :label="node.attrs.label"
@@ -28,6 +28,8 @@ const TargetComponent = computed(() => {
       :delete-node="deleteNode"
       :update-attributes="updateAttributes"
     />
-    <span v-else class="text-destructive text-xs border border-destructive px-1 rounded">[Unknown: {{ type }}]</span>
+    <span v-else class="text-destructive text-xs border border-destructive px-1 rounded"
+      >[Unknown: {{ type }}]</span
+    >
   </NodeViewWrapper>
 </template>

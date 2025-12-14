@@ -10,8 +10,8 @@ export interface UploadResult {
 }
 
 export type UploadHandler = (
-  file: File, 
-  onProgress?: (progress: number) => void
+  file: File,
+  onProgress?: (progress: number) => void,
 ) => Promise<UploadResult>
 
 export interface AttachmentFile {
@@ -19,12 +19,12 @@ export interface AttachmentFile {
   file?: File
   type?: string
   name?: string
-  
+
   // Upload status
   status: 'pending' | 'uploading' | 'done' | 'error'
   progress: number
   error?: Error
-  
+
   // Server data after upload
   serverData?: UploadResult
 }
@@ -35,7 +35,7 @@ export interface AIInputContext {
   isLoading: Ref<boolean>
   isDisabled: Ref<boolean>
   fileInputRef: Ref<HTMLInputElement | null>
-  
+
   // Actions
   setEditor: (instance: Editor) => void
   addFiles: (files: File[] | FileList) => Promise<void>
@@ -43,7 +43,7 @@ export interface AIInputContext {
   submit: () => void
   focus: () => void
   retryUpload: (id: string) => void
-  
+
   // Helpers
   isEmpty: Ref<boolean>
   history: Ref<string[]>

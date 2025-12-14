@@ -6,10 +6,10 @@ export interface ContextItemProps {
   label: string
   type: string
   metadata?: Record<string, any>
-  
+
   // Interaction state
   selected: boolean
-  
+
   // Actions
   deleteNode: () => void
   updateAttributes: (attrs: Record<string, any>) => void
