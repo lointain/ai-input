@@ -1,0 +1,35 @@
+[
+  {
+    "name": "ai-input",
+    "type": "registry:component",
+    "files": [
+      "ui/ai-input/AIInput.vue",
+      "ui/ai-input/AIInputAttachButton.vue",
+      "ui/ai-input/AIInputAttachments.vue",
+      "ui/ai-input/AIInputEditor.vue",
+      "ui/ai-input/AIInputToolbar.vue",
+      "ui/ai-input/AIInputVoice.vue",
+      "ui/ai-input/context.ts",
+      "ui/ai-input/extensions/ContextItem.ts",
+      "ui/ai-input/extensions/ContextItemView.vue",
+      "ui/ai-input/extensions/FileHandler.ts",
+      "ui/ai-input/extensions/HistoryNavigation.ts",
+      "ui/ai-input/extensions/MentionList.vue",
+      "ui/ai-input/extensions/SlashCommand/CommandList.vue",
+      "ui/ai-input/extensions/SlashCommand/index.ts",
+      "ui/ai-input/extensions/SlashCommand/shortcuts.ts",
+      "ui/ai-input/extensions/SlashCommand/types.ts",
+      "ui/ai-input/extensions/mentionSuggestion.ts",
+      "ui/ai-input/index.ts",
+      "ui/ai-input/registry/ContextItemWrapper.vue",
+      "ui/ai-input/registry/DefaultContextItem.vue",
+      "ui/ai-input/registry/index.ts",
+      "ui/ai-input/registry/items/DateContextItem.vue",
+      "ui/ai-input/registry/items/NumberContextItem.vue",
+      "ui/ai-input/registry/items/SelectContextItem.vue",
+      "ui/ai-input/registry/types.ts",
+      "ui/ai-input/types.ts",
+      "ui/ai-input/useVoice.ts"
+    ]
+  }
+]
