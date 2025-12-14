@@ -31,6 +31,18 @@ npx shadcn-vue@latest add https://ai-input.vercel.app/registry/ai-input.json
 
 (Note: Replace the URL with your actual deployment URL)
 
+## Documentation
+
+Detailed documentation is available in the [wiki](./wiki) folder:
+
+- [01 Overview](./wiki/en/01-Overview.md)
+- [02 Component Usage](./wiki/en/02-Component-Usage.md)
+- [03 Global Drag & Drop](./wiki/en/03-Global-Drag-Drop.md)
+- [04 Slash Commands](./wiki/en/04-Slash-Commands.md)
+- [05 Mentions](./wiki/en/05-Mentions.md)
+- [06 Voice Input](./wiki/en/06-Voice-Input.md)
+- [07 Context Items](./wiki/en/07-Context-Items.md)
+
 ## Development
 
 This repository is a monorepo containing the component source and a demo documentation site.

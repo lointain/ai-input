@@ -29,6 +29,18 @@ npx shadcn-vue@latest add https://ai-input.vercel.app/registry/ai-input.json
 
 (注意: 请将 URL 替换为实际部署后的地址)
 
+## 文档
+
+详细文档请参考 [wiki](./wiki) 文件夹：
+
+- [01 总体介绍](./wiki/zh/01-Overview.md)
+- [02 组件用法详解](./wiki/zh/02-Component-Usage.md)
+- [03 全局拖拽 (Drag & Drop)](./wiki/zh/03-Global-Drag-Drop.md)
+- [04 Slash 指令系统](./wiki/zh/04-Slash-Commands.md)
+- [05 Mentions 提及功能](./wiki/zh/05-Mentions.md)
+- [06 语音输入](./wiki/zh/06-Voice-Input.md)
+- [07 上下文项目 (Context Items)](./wiki/zh/07-Context-Items.md)
+
 ## 开发
 
 本项目采用 Monorepo 结构，包含组件源码和演示文档站点。
