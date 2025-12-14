@@ -24,10 +24,8 @@
 ### 添加到项目
 
 ```bash
-npx shadcn-vue@latest add https://ai-input.vercel.app/registry/ai-input.json
+npx shadcn-vue@latest add https://lointain.github.io/ai-input/registry/ai-input.json
 ```
-
-(注意: 请将 URL 替换为实际部署后的地址)
 
 ## 文档
 

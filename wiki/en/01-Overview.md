@@ -26,7 +26,7 @@ Ensure your project has Vue 3 and Tailwind CSS installed.
 
 ```bash
 # Add via shadcn-vue (Recommended)
-npx shadcn-vue@latest add https://ai-input.vercel.app/registry/ai-input.json
+npx shadcn-vue@latest add https://lointain.github.io/ai-input/registry/ai-input.json
 ```
 
 ### Basic Usage

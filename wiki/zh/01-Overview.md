@@ -26,7 +26,7 @@ AI Input 是一个专为 Vue 3 生态系统打造的现代化、Notion 风格的
 
 ```bash
 # 通过 shadcn-vue 方式添加（推荐）
-npx shadcn-vue@latest add https://ai-input.vercel.app/registry/ai-input.json
+npx shadcn-vue@latest add https://lointain.github.io/ai-input/registry/ai-input.json
 ```
 
 ### 基础使用

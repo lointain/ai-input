@@ -26,10 +26,8 @@ This component is distributed via a registry, similar to shadcn-vue.
 ### Add to your project
 
 ```bash
-npx shadcn-vue@latest add https://ai-input.vercel.app/registry/ai-input.json
+npx shadcn-vue@latest add https://lointain.github.io/ai-input/registry/ai-input.json
 ```
-
-(Note: Replace the URL with your actual deployment URL)
 
 ## Documentation
 
