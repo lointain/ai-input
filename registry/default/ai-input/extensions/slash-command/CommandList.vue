@@ -1,10 +1,20 @@
 <script setup lang="ts">
+/**
+ * CommandList.vue
+ * 
+ * Component to display the list of available slash commands.
+ * Handles keyboard navigation and selection.
+ * 
+ * @component
+ */
 import { ref, watch } from 'vue'
 import { cn } from '@/lib/utils'
 import type { PromptShortcut } from './types'
 
 const props = defineProps<{
+  /** List of filtered shortcuts */
   items: PromptShortcut[]
+  /** Command execution callback */
   command: (item: PromptShortcut) => void
 }>()
 
@@ -17,6 +27,9 @@ watch(
   },
 )
 
+/**
+ * Handle keyboard navigation events from Tiptap
+ */
 const onKeyDown = ({ event }: { event: KeyboardEvent }) => {
   if (event.key === 'ArrowUp') {
     selectedIndex.value = (selectedIndex.value + props.items.length - 1) % props.items.length

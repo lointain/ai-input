@@ -1,4 +1,12 @@
 <script setup lang="ts">
+/**
+ * DefaultContextItem.vue
+ * 
+ * Fallback component for context items that don't have a specific renderer.
+ * Displays basic metadata like size and mime type.
+ * 
+ * @component
+ */
 import { FileIcon, HashIcon } from 'lucide-vue-next'
 import { computed } from 'vue'
 import type { ContextItemProps } from '../registry/types'
@@ -6,6 +14,9 @@ import ContextItemWrapper from './ContextItemWrapper.vue'
 
 const props = defineProps<ContextItemProps>()
 
+/**
+ * Determine icon based on type
+ */
 const icon = computed(() => {
   if (props.type === 'variable') return HashIcon
   return FileIcon

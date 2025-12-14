@@ -1,19 +1,31 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
+/**
+ * State of the voice recognition
+ */
 export type VoiceState = 'idle' | 'listening' | 'processing'
 
 // Basic type definitions for Web Speech API since they might not be in standard lib yet
+/**
+ * Event interface for speech recognition results
+ */
 interface SpeechRecognitionEvent extends Event {
   results: SpeechRecognitionResultList
   resultIndex: number
   interpretation: any
 }
 
+/**
+ * Event interface for speech recognition errors
+ */
 interface SpeechRecognitionErrorEvent extends Event {
   error: string
   message: string
 }
 
+/**
+ * Web Speech API Recognition interface
+ */
 interface SpeechRecognition extends EventTarget {
   continuous: boolean
   interimResults: boolean
@@ -38,6 +50,13 @@ declare global {
   }
 }
 
+/**
+ * Hook for using the Web Speech API (Speech-to-Text).
+ * Handles browser support detection, recording state, and transcription results.
+ * 
+ * @param {function} onResult - Callback fired when text is transcribed
+ * @returns {Object} Voice control methods and state
+ */
 export function useVoice(onResult: (text: string) => void) {
   const state = ref<VoiceState>('idle')
   const recognition = ref<SpeechRecognition | null>(null)
@@ -91,6 +110,9 @@ export function useVoice(onResult: (text: string) => void) {
     }
   })
 
+  /**
+   * Start listening
+   */
   const start = () => {
     if (!isSupported.value || state.value === 'listening') return
     try {
@@ -100,11 +122,17 @@ export function useVoice(onResult: (text: string) => void) {
     }
   }
 
+  /**
+   * Stop listening
+   */
   const stop = () => {
     if (state.value !== 'listening') return
     recognition.value?.stop()
   }
 
+  /**
+   * Toggle listening state
+   */
   const toggle = () => {
     if (state.value === 'listening') {
       stop()

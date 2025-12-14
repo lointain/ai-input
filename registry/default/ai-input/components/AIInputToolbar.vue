@@ -1,4 +1,20 @@
 <script setup lang="ts">
+/**
+ * AIInputToolbar.vue
+ * 
+ * The bottom toolbar component containing action buttons and slots for extensions.
+ * Provides 'left' and 'right' slots for customizing the toolbar layout.
+ * 
+ * @component
+ * @example
+ * <AIInputToolbar>
+ *   <template #left><AIInputAttachButton /></template>
+ *   <template #right><AIInputVoice /></template>
+ * </AIInputToolbar>
+ * 
+ * @slot left - Slot for left-aligned content (e.g. attachments, formatting)
+ * @slot right - Slot for right-aligned content (e.g. voice, extra actions)
+ */
 import { Button } from '@/components/ui/button'
 import { ArrowUpIcon, SquareIcon } from 'lucide-vue-next'
 import { useAIInputContext } from '../core/context'

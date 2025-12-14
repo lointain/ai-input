@@ -1,4 +1,12 @@
 <script setup lang="ts">
+/**
+ * NumberContextItem.vue
+ * 
+ * Context item for numeric values.
+ * Provides a slider and input field for editing the value.
+ * 
+ * @component
+ */
 import { RulerIcon } from 'lucide-vue-next'
 import { computed, ref, watch } from 'vue'
 import type { ContextItemProps } from '../../registry/types'
@@ -10,15 +18,21 @@ import { Slider } from '@/components/ui/slider'
 const props = defineProps<ContextItemProps>()
 
 // Metadata structure: { value: number, unit: string, min?: number, max?: number, step?: number }
+/** Unit of measurement (e.g. 'px', 'em') */
 const unit = computed(() => props.metadata?.unit || '')
+/** Minimum value for slider */
 const min = computed(() => props.metadata?.min ?? 0)
+/** Maximum value for slider */
 const max = computed(() => props.metadata?.max ?? 100)
+/** Step value for slider/input */
 const step = computed(() => props.metadata?.step ?? 1)
 
-// Local state for editing
+/** Local state for editing to prevent aggressive updates */
 const currentValue = ref(props.metadata?.value ?? 0)
 
-// Sync from props
+/**
+ * Sync local state when props change (external updates)
+ */
 watch(
   () => props.metadata?.value,
   (val) => {
@@ -27,7 +41,10 @@ watch(
   { immediate: true },
 )
 
-// Sync to props
+/**
+ * Update the node attributes when value changes
+ * @param {number} val - The new numeric value
+ */
 const updateValue = (val: number) => {
   currentValue.value = val
   props.updateAttributes({
@@ -38,6 +55,9 @@ const updateValue = (val: number) => {
   })
 }
 
+/**
+ * Formatted label for display
+ */
 const displayLabel = computed(() => {
   return `${props.label}: ${currentValue.value}${unit.value ? ' ' + unit.value : ''}`
 })

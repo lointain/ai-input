@@ -1,4 +1,13 @@
 <script setup lang="ts">
+/**
+ * ContextItemView.vue
+ * 
+ * Tiptap Node View for the context item.
+ * Dynamically resolves and renders the specific component for the context item type
+ * using the ContextItemRegistry.
+ * 
+ * @component
+ */
 import { NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
 import { computed, inject } from 'vue'
 import { CONTEXT_ITEM_REGISTRY_KEY } from './registry/types'
@@ -9,6 +18,9 @@ const registry = inject(CONTEXT_ITEM_REGISTRY_KEY) as any
 const type = computed(() => props.node.attrs.type)
 
 // Fallback safely if registry is missing (e.g. usage outside of AIInputProvider)
+/**
+ * Resolved component to render based on item type
+ */
 const TargetComponent = computed(() => {
   if (!registry) return null
   return registry.getComponent(type.value)

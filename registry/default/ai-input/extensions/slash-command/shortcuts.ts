@@ -1,6 +1,10 @@
 import { BugIcon, DatabaseIcon, CodeIcon, SparklesIcon } from 'lucide-vue-next'
 import type { PromptShortcut } from './types'
 
+/**
+ * Default list of slash commands available in the editor.
+ * Includes templates for Bug Analysis, SQL Generation, Refactoring, and Explanation.
+ */
 export const defaultShortcuts: PromptShortcut[] = [
   {
     key: 'bug',

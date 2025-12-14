@@ -1,4 +1,14 @@
 <script setup lang="ts">
+/**
+ * AIInputVoice.vue
+ * 
+ * A microphone button that handles speech-to-text input.
+ * Integrates with the useVoice hook to manage recording state and insertion into the editor.
+ * 
+ * @component
+ * @example
+ * <AIInputVoice />
+ */
 import { Button } from '@/components/ui/button'
 import { MicIcon } from 'lucide-vue-next'
 import { useVoice } from '../hooks/use-voice'
@@ -7,6 +17,10 @@ import { cn } from '@/lib/utils'
 
 const { editor } = useAIInputContext()
 
+/**
+ * Initialize voice hook with callback to insert text into editor
+ * @param {string} text - The transcribed text from speech
+ */
 const { state, toggle, isSupported } = useVoice((text) => {
   if (editor.value) {
     editor.value

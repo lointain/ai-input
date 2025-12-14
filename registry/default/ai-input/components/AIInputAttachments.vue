@@ -1,15 +1,30 @@
 <script setup lang="ts">
+/**
+ * AIInputAttachments.vue
+ * 
+ * Displays a list of files currently attached to the input.
+ * Handles the visualization of upload progress, errors, and provides removal/retry actions.
+ * 
+ * @component
+ * @example
+ * <AIInputAttachments class="mb-2" />
+ */
 import { cn } from '@/lib/utils'
 import { FileIcon, XIcon, RefreshCwIcon, AlertCircleIcon } from 'lucide-vue-next'
 import { useAIInputContext } from '../core/context'
 import { computed } from 'vue'
 
 const props = defineProps<{
+  /** Optional CSS class for the container */
   class?: string
 }>()
 
 const { files, removeFile, retryUpload } = useAIInputContext()
 
+/**
+ * Computed property to check if there are any files to display
+ * @returns {boolean} True if file list is not empty
+ */
 const hasFiles = computed(() => files.value.length > 0)
 </script>
 

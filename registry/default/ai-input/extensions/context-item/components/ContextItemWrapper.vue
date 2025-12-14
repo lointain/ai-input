@@ -1,4 +1,15 @@
 <script setup lang="ts">
+/**
+ * ContextItemWrapper.vue
+ * 
+ * Common UI wrapper for all context items.
+ * Provides the pill-shaped container, icon, label, popover functionality,
+ * and removal actions.
+ * 
+ * @component
+ * @slot default - Content to be displayed in the popover body
+ * @slot trigger - Custom content for the trigger button (replaces default label)
+ */
 import { cn } from '@/lib/utils'
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
@@ -6,16 +17,24 @@ import { TrashIcon, ExternalLinkIcon } from 'lucide-vue-next'
 import type { Component } from 'vue'
 
 const props = defineProps<{
+  /** Unique ID of the item */
   id: string
+  /** Label text to display */
   label: string
+  /** Icon component to display */
   icon?: Component
+  /** Type string for display in header */
   type?: string
+  /** Metadata object (used for debug/links) */
   metadata?: Record<string, any>
+  /** Whether the item is selected */
   selected?: boolean
+  /** Whether the item can be closed/removed */
   closable?: boolean
 
-  // Actions
+  /** Callback when remove button is clicked */
   onRemove?: () => void
+  /** Callback when popover is opened */
   onOpen?: () => void
 }>()
 </script>

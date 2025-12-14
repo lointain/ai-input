@@ -10,23 +10,45 @@ import mentionSuggestion from '../extensions/mention/suggestion'
 import { SlashCommand } from '../extensions/slash-command'
 import type { AnyExtension } from '@tiptap/core'
 
+/**
+ * Localization options for the editor
+ */
 export interface Locale {
   placeholder: string
 }
 
+/**
+ * Default localization settings
+ */
 export const defaultLocale: Locale = {
   placeholder: 'Ask AI anything... (Type @ for mention, / for templates)',
 }
 
+/**
+ * Options for initializing the editor state
+ */
 export interface UseEditorStateOptions {
+  /** Command history for navigation */
   history?: string[]
+  /** Placeholder text */
   placeholder?: string
+  /** Localization overrides */
   locale?: Partial<Locale>
+  /** Callback on submit (Enter key) */
   onSubmit?: () => void
+  /** Callback when files are added (paste/drop) */
   onAddFiles?: (files: File[]) => void
+  /** Custom extension configuration */
   extensions?: (defaultExtensions: AnyExtension[]) => AnyExtension[]
 }
 
+/**
+ * Hook to manage Tiptap editor instance and configuration.
+ * Sets up all extensions including Mentions, Slash Commands, File Handling, etc.
+ * 
+ * @param {UseEditorStateOptions} options - Configuration options
+ * @returns {Object} Object containing the editor instance
+ */
 export function useEditorState(options: UseEditorStateOptions = {}) {
   const historyIndex = ref(-1)
   const draft = ref('')
@@ -37,6 +59,9 @@ export function useEditorState(options: UseEditorStateOptions = {}) {
   }))
 
   // Define SubmitShortcut extension locally
+  /**
+   * Custom extension to handle Enter key submission
+   */
   const SubmitShortcut = Extension.create({
     name: 'submitShortcut',
     priority: 0,
@@ -53,6 +78,9 @@ export function useEditorState(options: UseEditorStateOptions = {}) {
     },
   })
 
+  /**
+   * Configure default extensions
+   */
   const getDefaultExtensions = () => [
     StarterKit,
     Placeholder.configure({

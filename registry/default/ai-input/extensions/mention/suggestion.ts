@@ -2,7 +2,14 @@ import { VueRenderer } from '@tiptap/vue-3'
 import tippy from 'tippy.js'
 import MentionList from './MentionList.vue'
 
+/**
+ * Configuration for Tiptap Mention extension suggestion utility.
+ * Handles the popup rendering and item filtering.
+ */
 export default {
+  /**
+   * Filter items based on query
+   */
   items: ({ query }: { query: string }) => {
     // Mock data
     return [
@@ -15,6 +22,9 @@ export default {
     ].filter((item) => item.label.toLowerCase().includes(query.toLowerCase()))
   },
 
+  /**
+   * Execution command when an item is selected
+   */
   command: ({ editor, range, props }: any) => {
     // Increase range.to by one when the next node is of type "text"
     // and starts with a space character
@@ -47,6 +57,9 @@ export default {
     window.getSelection()?.collapseToEnd()
   },
 
+  /**
+   * Renderer configuration for the popup
+   */
   render: () => {
     let component: VueRenderer
     let popup: any

@@ -15,13 +15,20 @@
  *   <AIInputEditor />
  *   <AIInputToolbar />
  * </AIInput>
+ * 
+ * @slot default - The content to be rendered inside the input container (usually Editor, Toolbar, etc.)
  */
 import type { HTMLAttributes } from 'vue'
 import { cn } from '@/lib/utils'
 import { useAIInputProvider, type AIInputProps } from '../core/context'
 import AIInputAttachments from './AIInputAttachments.vue'
 
+/**
+ * Props interface for AIInput component
+ * Extends AIInputProps from context
+ */
 interface Props extends AIInputProps {
+  /** Optional CSS class for the root element */
   class?: HTMLAttributes['class']
 }
 
@@ -29,6 +36,11 @@ const props = defineProps<Props>()
 
 const { fileInputRef, addFiles } = useAIInputProvider(props)
 
+/**
+ * Handle file selection from the hidden file input
+ * 
+ * @param {Event} e - The change event from file input
+ */
 function onFileChange(e: Event) {
   const input = e.target as HTMLInputElement
   if (input.files) {
@@ -37,12 +49,24 @@ function onFileChange(e: Event) {
   input.value = ''
 }
 
+/**
+ * Handle drag over event to allow dropping files
+ * Prevents default behavior if dragged items are files
+ * 
+ * @param {DragEvent} e - The dragover event
+ */
 function handleDragOver(e: DragEvent) {
   if (e.dataTransfer?.types?.includes('Files')) {
     e.preventDefault()
   }
 }
 
+/**
+ * Handle drop event for files
+ * Adds dropped files to the context
+ * 
+ * @param {DragEvent} e - The drop event
+ */
 function handleDrop(e: DragEvent) {
   if (e.dataTransfer?.types?.includes('Files')) {
     e.preventDefault()

@@ -1,4 +1,12 @@
 <script setup lang="ts">
+/**
+ * DateContextItem.vue
+ * 
+ * Context item for selecting and displaying a date.
+ * Uses a Calendar component in the popover.
+ * 
+ * @component
+ */
 import { CalendarIcon } from 'lucide-vue-next'
 import { computed } from 'vue'
 import type { ContextItemProps } from '../../registry/types'
@@ -8,16 +16,28 @@ import { format } from 'date-fns'
 
 const props = defineProps<ContextItemProps>()
 
-// Metadata structure: { date: string (ISO) }
+/**
+ * Parsed current date from metadata
+ * Metadata structure: { date: string (ISO) }
+ */
 const currentDate = computed(() => {
   return props.metadata?.date ? new Date(props.metadata.date) : undefined
 })
 
+/**
+ * Formatted label for display
+ */
 const displayLabel = computed(() => {
   const dateStr = currentDate.value ? format(currentDate.value, 'yyyy-MM-dd') : 'Pick a date'
   return `${props.label}: ${dateStr}`
 })
 
+/**
+ * Handle date selection from calendar
+ * Updates the node attributes with ISO string
+ * 
+ * @param {Date | undefined} date - The selected date
+ */
 const handleSelect = (date: Date | undefined) => {
   if (!date) return
   props.updateAttributes({

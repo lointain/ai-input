@@ -1,4 +1,12 @@
 <script setup lang="ts">
+/**
+ * MentionList.vue
+ * 
+ * Component to display the list of mention suggestions.
+ * Handles keyboard navigation (Up/Down/Enter) and selection.
+ * 
+ * @component
+ */
 import { ref, watch } from 'vue'
 import { cn } from '@/lib/utils'
 import { FileIcon } from 'lucide-vue-next'
@@ -31,6 +39,9 @@ const selectItem = (index: number) => {
   }
 }
 
+/**
+ * Handle keyboard events delegated from Tiptap
+ */
 const onKeyDown = ({ event }: { event: KeyboardEvent }) => {
   if (event.key === 'ArrowUp') {
     selectedIndex.value = (selectedIndex.value + props.items.length - 1) % props.items.length

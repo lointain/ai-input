@@ -6,6 +6,8 @@
  * Handles the editor instance injection and editable state synchronization.
  * 
  * @component
+ * @example
+ * <AIInputEditor />
  */
 import { EditorContent } from '@tiptap/vue-3'
 import { watch } from 'vue'
@@ -13,7 +15,9 @@ import { useAIInputContext } from '../core/context'
 
 const { editor, isDisabled } = useAIInputContext()
 
-// Update editable state
+/**
+ * Watch for disabled state changes and update editor editable state
+ */
 watch(isDisabled, (val) => {
   editor.value?.setEditable(!val)
 })

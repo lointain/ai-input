@@ -11,7 +11,7 @@ A Notion-style, AI-native input component for Vue 3 applications. Built on top o
 - @ **Mentions**: Support for @mentioning context items or files.
 - 📁 **Drag & Drop**: Handle file uploads with drag and drop support.
 - 🎙️ **Voice Input**: Built-in voice recognition support.
-- 🎨 **Shadcn UI Compatible**: Designed to fit perfectly with shadcn-vue.
+- 🎨 **Shadcn UI Compatible**: Designed to fit perfectly with shadcn-vue and ai-element-vue.
 
 ## Installation
 

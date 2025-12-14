@@ -7,6 +7,12 @@ import type { SlashCommandOptions, PromptShortcut } from './types'
 import { defaultShortcuts } from './shortcuts'
 import { PluginKey } from '@tiptap/pm/state'
 
+/**
+ * SlashCommand Extension
+ * 
+ * Provides a slash command menu ("/") triggered by the Suggestion utility.
+ * Allows inserting templates and complex nodes via shortcuts.
+ */
 export const SlashCommand = Extension.create<SlashCommandOptions>({
   name: 'slashCommand',
 

@@ -1,12 +1,24 @@
 import { Extension } from '@tiptap/core'
 import { Plugin, PluginKey } from '@tiptap/pm/state'
 
+/**
+ * Options for the FileHandler extension
+ */
 export interface FileHandlerOptions {
+  /** Callback when files are dropped into the editor */
   onDrop?: (files: File[], pos: number) => void
+  /** Callback when files are pasted */
   onPaste?: (files: File[]) => void
+  /** Callback when internal reference items are dropped */
   onReferenceDrop?: (data: any, pos: number) => void
 }
 
+/**
+ * FileHandler Extension
+ * 
+ * Handles drag-and-drop and paste events for files.
+ * Also manages internal drag-and-drop for reference items.
+ */
 export const FileHandler = Extension.create<FileHandlerOptions>({
   name: 'fileHandler',
 

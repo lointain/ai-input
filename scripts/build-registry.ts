@@ -1,3 +1,9 @@
+/**
+ * @file build-registry.ts
+ * @description Script to build the registry for the AI Input component.
+ * It scans the registry directory, collects all component files, and generates
+ * a JSON registry file that can be used by the documentation site or CLI.
+ */
 
 import fs from 'fs';
 import path from 'path';
@@ -6,19 +12,26 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/** Root directory of the registry components */
 const REGISTRY_ROOT = path.resolve(__dirname, '../registry');
+/** Output directory for the generated registry JSON files */
 const OUTPUT_DIR = path.resolve(__dirname, '../apps/web/public/registry');
 
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-// Define the component
+/** The name of the component to build registry for */
 const componentName = 'ai-input';
 const componentPath = path.join(REGISTRY_ROOT, 'default', componentName);
 
-// List of files to include
-// We will walk the directory to find all files
+/**
+ * Recursively gets all files in a directory.
+ * 
+ * @param {string} dirPath - The directory path to scan
+ * @param {string[]} [arrayOfFiles] - Accumulator array for recursion
+ * @returns {string[]} Array of file paths
+ */
 function getAllFiles(dirPath: string, arrayOfFiles: string[] = []) {
   const files = fs.readdirSync(dirPath);
 
@@ -33,8 +46,13 @@ function getAllFiles(dirPath: string, arrayOfFiles: string[] = []) {
   return arrayOfFiles;
 }
 
+/** List of all files in the component directory */
 const allFiles = getAllFiles(componentPath);
 
+/**
+ * Registry item definition.
+ * Contains metadata and file contents for the component.
+ */
 const registryItem = {
   name: componentName,
   type: "registry:component",
@@ -66,13 +84,19 @@ const registryItem = {
   })
 };
 
-// Write individual component JSON
+/**
+ * Write individual component registry JSON file.
+ * This file contains the complete definition and source code of the component.
+ */
 fs.writeFileSync(
   path.join(OUTPUT_DIR, `${componentName}.json`),
   JSON.stringify(registryItem, null, 2)
 );
 
-// Write index registry.json
+/**
+ * Write the index registry JSON file.
+ * This file lists available components and their associated files.
+ */
 const registryIndex = [
   {
     name: componentName,

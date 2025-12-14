@@ -1,6 +1,15 @@
 import { describe, it, expect, vi } from 'vitest'
 import { useEditorState } from '../hooks/use-editor-state'
 
+// Mock Vue's onBeforeUnmount to avoid warning in tests
+vi.mock('vue', async (importOriginal) => {
+  const actual: any = await importOriginal()
+  return {
+    ...actual,
+    onBeforeUnmount: vi.fn(),
+  }
+})
+
 // Mock Tiptap
 vi.mock('@tiptap/vue-3', () => ({
   useEditor: () => {

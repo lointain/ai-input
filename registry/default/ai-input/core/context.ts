@@ -6,6 +6,9 @@ import { CONTEXT_ITEM_REGISTRY_KEY } from '../extensions/context-item/registry/t
 import { useFileUpload } from '../hooks/use-file-upload'
 import { useEditorState } from '../hooks/use-editor-state'
 
+/**
+ * Props for the AIInput component
+ */
 export interface AIInputProps {
   /**
    * Disable interaction with the input
@@ -48,6 +51,9 @@ export interface AIInputProps {
 /**
  * Main provider hook for AIInput system.
  * Initializes state, editor, and file handling logic.
+ * 
+ * @param {AIInputProps} props - Component props
+ * @returns {AIInputContext} The provided context object
  */
 export function useAIInputProvider(props: AIInputProps) {
   const fileInputRef = ref<HTMLInputElement | null>(null)
@@ -72,6 +78,10 @@ export function useAIInputProvider(props: AIInputProps) {
   const isDisabled = computed(() => props.disabled || isLoading.value)
 
   // Internal submit handler
+  /**
+   * Handles the submission of the input.
+   * Checks for errors, empty content, and active uploads before calling onSubmit.
+   */
   const handleSubmit = () => {
     if (isDisabled.value || isUploading.value) return
 
@@ -104,13 +114,10 @@ export function useAIInputProvider(props: AIInputProps) {
   const registry = createContextItemRegistry()
   provide(CONTEXT_ITEM_REGISTRY_KEY, registry)
 
-  // setEditor is no longer needed to be exposed publicly as we manage it internally,
-  // but we keep it in context if we want to allow external control (though useEditorState handles it).
-  // However, AIInputEditor.vue currently uses useEditor internally.
-  // Wait, AIInputEditor.vue previously CREATED the editor.
-  // Now we moved creation to useEditorState.
-  // So AIInputEditor.vue needs to become a wrapper that just renders <EditorContent :editor="editor" />.
-
+  /**
+   * Manually set the editor instance (internal use)
+   * @param {Editor} instance - The Tiptap editor instance
+   */
   const setEditor = (instance: Editor) => {
     // This might be deprecated if we move full control to useEditorState
     editor.value = instance
@@ -140,6 +147,13 @@ export function useAIInputProvider(props: AIInputProps) {
   return context
 }
 
+/**
+ * Hook to access the AIInput context
+ * Must be used within an AIInput component tree
+ * 
+ * @throws {Error} If used outside of AIInput context
+ * @returns {AIInputContext} The context object
+ */
 export function useAIInputContext() {
   const context = inject<AIInputContext>(AI_INPUT_KEY)
   if (!context) {
