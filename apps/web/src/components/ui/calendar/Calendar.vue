@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { CalendarRoot, type CalendarRootEmits, type CalendarRootProps, useForwardPropsEmits, CalendarCell, CalendarCellTrigger, CalendarGrid, CalendarGridBody, CalendarGridHead, CalendarGridRow, CalendarHeadCell, CalendarHeader, CalendarHeading, CalendarNext, CalendarPrev } from 'radix-vue'
-import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<CalendarRootProps & { class?: HTMLAttributes['class'] }>()

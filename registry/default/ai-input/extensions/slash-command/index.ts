@@ -72,10 +72,10 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
                 return
               }
 
-              popup = tippy('body', {
+              popup = tippy(document.body as any, {
                 getReferenceClientRect: props.clientRect as any,
                 appendTo: () => document.body,
-                content: component.element,
+                content: component.element as any,
                 showOnCreate: true,
                 interactive: true,
                 trigger: 'manual',
@@ -91,14 +91,14 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
                 return
               }
 
-              popup[0].setProps({
+              popup.setProps({
                 getReferenceClientRect: props.clientRect,
               })
             },
 
             onKeyDown: (props) => {
               if (props.event.key === 'Escape') {
-                popup[0].hide()
+                popup.hide()
                 return true
               }
               // @ts-ignore
@@ -106,7 +106,7 @@ export const SlashCommand = Extension.create<SlashCommandOptions>({
             },
 
             onExit: () => {
-              popup[0].destroy()
+              popup.destroy()
               component.destroy()
             },
           }

@@ -94,7 +94,7 @@ const displayLabel = computed(() => {
         :min="min"
         :max="max"
         :step="step"
-        @update:model-value="(v) => updateValue(v[0])"
+        @update:model-value="(v) => v && updateValue(v[0])"
       />
     </div>
   </ContextItemWrapper>

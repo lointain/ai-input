@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { AIInput, AIInputEditor, AIInputToolbar, AIInputAttachButton, AIInputVoice } from '@/components/ai-input'
 import type { AttachmentFile } from '@/components/ai-input/types'
-import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
@@ -33,13 +32,13 @@ const handleDragStart = (event: DragEvent, item: any) => {
   }
 }
 
-const handleUpload = async (file: File, onProgress: (p: number) => void) => {
+const handleUpload = async (file: File, onProgress?: (p: number) => void) => {
   console.log('Starting upload for:', file.name)
   
   // Mock upload process
   const total = 100
   for (let i = 0; i <= total; i += 10) {
-    onProgress(i)
+    if (onProgress) onProgress(i)
     await new Promise(resolve => setTimeout(resolve, 100))
   }
 

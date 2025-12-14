@@ -75,10 +75,10 @@ export default {
           return
         }
 
-        popup = tippy('body', {
+        popup = tippy(document.body as any, {
           getReferenceClientRect: props.clientRect,
           appendTo: () => document.body,
-          content: component.element,
+          content: component.element as any,
           showOnCreate: true,
           interactive: true,
           trigger: 'manual',

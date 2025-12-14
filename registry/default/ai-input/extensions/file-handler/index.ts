@@ -76,7 +76,7 @@ export const FileHandler = Extension.create<FileHandlerOptions>({
 
             return false
           },
-          handlePaste: (view, event) => {
+          handlePaste: (_view, event) => {
             const items = event.clipboardData?.items
             if (!items) return false
 

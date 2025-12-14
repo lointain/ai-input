@@ -34,7 +34,7 @@ interface Props extends AIInputProps {
 
 const props = defineProps<Props>()
 
-const { fileInputRef, addFiles } = useAIInputProvider(props)
+const { addFiles } = useAIInputProvider(props)
 
 /**
  * Handle file selection from the hidden file input

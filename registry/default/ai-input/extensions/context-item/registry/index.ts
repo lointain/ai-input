@@ -1,4 +1,4 @@
-import { reactive, defineAsyncComponent } from 'vue'
+import { reactive, defineAsyncComponent, type AsyncComponentLoader } from 'vue'
 import type { ContextItemRegistry, ContextItemComponent, RegistryItem } from './types'
 import DefaultContextItem from '../components/DefaultContextItem.vue'
 import NumberContextItem from '../components/items/NumberContextItem.vue'
@@ -48,16 +48,16 @@ export function createContextItemRegistry(): ContextItemRegistry {
    * @param {string} type - The type to look up
    * @returns {ContextItemComponent | AsyncComponentLoader | undefined} The Vue component
    */
-  const getComponent = (type: string) => {
+  const getComponent = (type: string): ContextItemComponent | AsyncComponentLoader | undefined => {
     const item = get(type)
     if (!item) return undefined
 
     // Check if it's an async component loader (function)
     if (typeof item.component === 'function' && !('render' in item.component)) {
-      return defineAsyncComponent(item.component as any)
+      return defineAsyncComponent(item.component as any) as unknown as AsyncComponentLoader
     }
 
-    return item.component
+    return item.component as ContextItemComponent
   }
 
   return {

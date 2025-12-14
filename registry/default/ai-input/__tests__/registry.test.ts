@@ -6,9 +6,21 @@ import { defineComponent } from 'vue'
 describe('ContextItemRegistry', () => {
   it('should register and retrieve components', () => {
     const registry = createContextItemRegistry()
-    const TestComponent = defineComponent({ name: 'Test' })
-
-    registry.register('test', TestComponent)
+    const TestComponent = defineComponent({
+       name: 'TestComponent',
+       props: {
+         id: { type: String, required: true },
+         label: { type: String, required: true },
+         type: { type: String, required: true },
+         metadata: { type: Object },
+         selected: { type: Boolean, required: true },
+         deleteNode: { type: Function, required: true },
+         updateAttributes: { type: Function, required: true },
+       },
+       template: '<div>Test</div>',
+     })
+ 
+     registry.register('test', TestComponent as any)
 
     const item = registry.get('test')
     expect(item).toBeDefined()
